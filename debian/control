@@ -1,0 +1,29 @@
+Source: apertium-es-ca
+Section: science
+Priority: optional
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Uploaders: Tino Didriksen <mail@tinodidriksen.com>,
+           Kartik Mistry <kartik@debian.org>
+Build-Depends: apertium (>= 3.3),
+               autotools-dev,
+               debhelper (>= 9.0),
+               dh-autoreconf,
+               gawk,
+               libapertium3-3.3-dev,
+               locales,
+               pkg-config (>= 0.21)
+Standards-Version: 3.9.5
+Homepage: http://apertium.org/
+Vcs-Git: git://anonscm.debian.org/debian-science/packages/apertium.git
+Vcs-Browser: https://anonscm.debian.org/cgit/debian-science/packages/apertium.git
+
+Package: apertium-es-ca
+Architecture: all
+Depends: apertium (>= 3.3), ${misc:Depends}, ${shlibs:Depends}
+Provides: apertium-ca-es
+Conflicts: apertium-ca-es
+Description: Apertium translation data for the Spanish-Catalan pair
+ This data package provides Apertium language resources for translating
+ between the Spanish (es) and Catalan (ca) languages.
+ .
+ This package also provides Catalan to Spanish language pair.
