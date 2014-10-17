@@ -214,9 +214,15 @@
       <cat-item lemma="llamar" tags="vblex.pri.*"/>
       <cat-item lemma="llamar" tags="vblex.pii.*"/>
       <cat-item lemma="llamar" tags="vblex.fti.*"/>
+      <cat-item lemma="llamar" tags="vblex.ifi.*"/>
       <cat-item lemma="parecer" tags="vblex.pri.*"/>
       <cat-item lemma="parecer" tags="vblex.pii.*"/>
       <cat-item lemma="parecer" tags="vblex.fti.*"/>
+      <cat-item lemma="parecer" tags="vblex.ifi.*"/>
+      <cat-item lemma="quebrar" tags="vblex.pri.*"/>
+      <cat-item lemma="quebrar" tags="vblex.pii.*"/>
+      <cat-item lemma="quebrar" tags="vblex.fti.*"/>      
+      <cat-item lemma="quebrar" tags="vblex.ifi.*"/>
     </def-cat>
 
     <def-cat n="caer">
@@ -556,6 +562,21 @@
       <list-item v="regió"/>
       <list-item v="catàleg"/> <!-- a="mireiafarrus" -->
       <list-item v="biblioteca"/> <!-- a="mireiafarrus" -->
+      <list-item v="centre"/> <!-- a="mireiafarrus" -->
+      <list-item v="apartat"/> <!-- a="mireiafarrus" -->
+      <list-item v="enunciat"/> <!-- a="mireiafarrus" -->
+      <list-item v="carpeta"/> <!-- a="mireiafarrus" -->
+      <list-item v="enllaç"/> <!-- a="mireiafarrus" -->
+      <list-item v="educació"/> <!-- a="mireiafarrus" -->
+      <list-item v="moment"/> <!-- a="mireiafarrus" -->
+      <list-item v="espai"/> <!-- a="mireiafarrus" -->
+      <list-item v="web"/> <!-- a="mireiafarrus" -->
+      <list-item v="recta"/> <!-- a="mireiafarrus" -->
+      <list-item v="classe"/> <!-- a="mireiafarrus" -->
+      <list-item v="calendari"/> <!-- a="mireiafarrus" -->
+      <list-item v="debat"/> <!-- a="mireiafarrus" -->
+      <list-item v="planificació"/> <!-- a="mireiafarrus" -->
+      <list-item v="tecnologia"/> <!-- a="mireiafarrus" -->
 
     </def-list>
     <def-list n="tiempo">
@@ -696,6 +717,7 @@
 	  </test>
 	  <call-macro n="f_bcond">
 	    <with-param pos="1"/>
+            <with-param pos="2"/>
 	  </call-macro>
 	</when>
 	<otherwise>
@@ -792,6 +814,7 @@
 	  </test>
 	  <call-macro n="f_bcond">
 	    <with-param pos="1"/>
+            <with-param pos="2"/>
 	  </call-macro>
 	</when>
 	<otherwise>
@@ -894,7 +917,7 @@
 
     </def-macro>
 
-    <def-macro n="f_bcond" npar="1"><!--Para mirar si el blanco contiene o no formato. Hay que poner esta función en las reglas en que desaparezca alguna palabra, con tal de decidir si el blanco de la palabra eliminada debe eliminarse también o conservarse. Si contiene formato hay que conservarla, si no contiene formato hay que eliminarla para que no aparezcan dos espacios seguidos. -->
+    <def-macro n="f_bcond" npar="2"><!--Para mirar si el blanco contiene o no formato. Hay que poner esta función en las reglas en que desaparezca alguna palabra, con tal de decidir si el blanco de la palabra eliminada debe eliminarse también o conservarse. Si contiene formato hay que conservarla, si no contiene formato hay que eliminarla para que no aparezcan dos espacios seguidos. -->
       <choose>
 	<when>
 	  <test>
@@ -5954,6 +5977,7 @@
 	</out>
 	<call-macro n="f_bcond">
 	  <with-param pos="2"/>
+          <with-param pos="3"/>
 	</call-macro>
 
       </action>
@@ -5994,6 +6018,7 @@
 	</out>
 	<call-macro n="f_bcond">
 	  <with-param pos="3"/>
+          <with-param pos="4"/>
 	</call-macro>
 
       </action>
@@ -6032,6 +6057,7 @@
 	</out>
 	<call-macro n="f_bcond">
 	  <with-param pos="2"/>
+          <with-param pos="3"/>
 	</call-macro>
 
       </action>
@@ -6081,6 +6107,7 @@
 	</out>
 	<call-macro n="f_bcond">
 	  <with-param pos="2"/>
+          <with-param pos="3"/>
 	</call-macro>
 
       </action>
@@ -7473,23 +7500,31 @@
 		  <lit v="assemblar"/>
 		</let>
 	      </when>
-	    </choose>
-	  </when>
-
-
-
-	</choose>
+    	      <when>
+		<test>
+		  <equal>
+		    <clip pos="2" side="sl" part="lem"/>
+		    <lit v="quebrar"/>
+		  </equal>
+		</test>		    
+		<let>
+		  <clip pos="2" side="tl" part="lem"/>
+		  <lit v="trencar"/>
+		</let>
+	      </when>
+           </choose>
+	      </when>
+            </choose>
 	<out>
 	  <lu>
 	    <clip pos="1" side="tl" part="whole"/>
 	  </lu>
 	  <b pos="1"/>
-	  <lu>
-	    <clip pos="2" side="tl" part="whole"/>
-	  </lu>
 	</out>
+	<call-macro n="f_pretind">
+	  <with-param pos="2"/>
+	</call-macro> 
       </action>
-
     </rule> 
 
 
@@ -7521,6 +7556,7 @@
 	    </test>
 	    <call-macro n="f_bcond"><!--Envía el blanco sólo si tiene formato -->
 	      <with-param pos="1"/>
+              <with-param pos="2"/>
 	    </call-macro>   
 	    <call-macro n="f_pretind"><!--Traduce el pretérito indefinido si es el caso y envía el verbo -->
 	      <with-param pos="2"/>
@@ -7570,6 +7606,7 @@
 	    </test>
 	    <call-macro n="f_bcond">
 	      <with-param pos="1"/>
+              <with-param pos="2"/>
 	    </call-macro>
 	    
 	    <out>	 
@@ -7631,6 +7668,7 @@
       <action>
 	<call-macro n="f_bcond">
 	  <with-param pos="1"/>
+          <with-param pos="2"/>
 	</call-macro>
 	<out>
 	  <lu>
@@ -7654,6 +7692,7 @@
       <action>
 	<call-macro n="f_bcond">
 	  <with-param pos="1"/>
+          <with-param pos="2"/>
 	</call-macro>
 	<out>
 	  <lu>
@@ -7709,6 +7748,7 @@
 	    </call-macro> 
 	    <call-macro n="f_bcond">
 	      <with-param pos="1"/>
+              <with-param pos="2"/>
 	    </call-macro>
 	  </when>
 	  <otherwise>
