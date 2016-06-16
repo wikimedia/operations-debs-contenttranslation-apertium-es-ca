@@ -1,3 +1,10 @@
+apertium-es-ca (1.2.1+svn~57448-1+wmf1) jessie-wikimedia; urgency=low
+
+  * Rebuild for Jessie.
+  * Fixed dependencies, Vcs-* URLs and simple debian/rules file.
+
+ -- Kartik Mistry <kartik@debian.org>  Thu, 16 Jun 2016 13:41:43 +0530
+
 apertium-es-ca (1.2.1+svn~57448-1) trusty; urgency=low
 
   [ Kartik Mistry ]
